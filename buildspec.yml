@@ -3,7 +3,7 @@ version: 0.2
 env:
   secrets-manager:
     LOGIN: UserService:sonartoken
-    HOST: SUserService:host
+    HOST: UserService:host
     Organization: UserService:organization
     Project: UserService:projectKey
 
@@ -16,7 +16,7 @@ phases:
       - echo Logging into Amazon ECR
       - aws --version
       - $(aws ecr get-login --no-include-email --region ap-south-1)
-      - REPOSITORY_URI=462352741814.dkr.ecr.ap-south-1.amazonaws.com/dont_delete_ordermanagement
+      - REPOSITORY_URI=262029594535.dkr.ecr.ap-south-1.amazonaws.com/userservice
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
