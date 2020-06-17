@@ -2,10 +2,10 @@ version: 0.2
 
 env:
   secrets-manager:
-    LOGIN: SonarUserCredentials:sonartoken
-    HOST: SonarUserCredentials:host
-    Organization: SonarUserCredentials:organization
-    Project: SonarUserCredentials:projectKey
+    LOGIN: UserService:sonartoken
+    HOST: SUserService:host
+    Organization: UserService:organization
+    Project: UserService:projectKey
 
 phases:
   install:
@@ -43,6 +43,6 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"orderContainer","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"userContainer","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
